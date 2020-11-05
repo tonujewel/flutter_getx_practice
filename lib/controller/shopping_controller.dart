@@ -1,4 +1,5 @@
 import 'package:flutter_getx_practice/model/product.dart';
+import 'package:flutter_getx_practice/views/Hello.dart';
 import 'package:get/get.dart';
 
 class ShoppingController extends GetxController {
@@ -8,6 +9,7 @@ class ShoppingController extends GetxController {
   void onInit() {
     super.onInit();
     fetchData();
+    loading();
   }
 
   void fetchData() async {
@@ -34,5 +36,11 @@ class ShoppingController extends GetxController {
           productName: 'ThirdProd'),
     ];
     product.value = productResult;
+  }
+
+  void loading() async{
+    await Future.delayed(Duration(seconds: 3));
+    Get.to(Hello());
+  
   }
 }

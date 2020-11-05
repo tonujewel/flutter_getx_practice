@@ -7,6 +7,7 @@ class ShoppingPage extends StatelessWidget {
   final shoppingController = Get.put(ShoppingController());
   final cartController = Get.put(CartController());
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,8 +35,7 @@ class ShoppingPage extends StatelessWidget {
                             Text('${controller.product[index].price}'),
                             RaisedButton(
                               onPressed: () {
-                                cartController
-                                    .addToCard(controller.product[index]);
+                                cartController.addToCard(controller.product[index]);
                               },
                               child: Text("Add to cart"),
                             )
@@ -45,6 +45,7 @@ class ShoppingPage extends StatelessWidget {
                     });
               }),
             ),
+            
             GetX<CartController>(builder: (controller) {
               return Text(
                 'Total amount: \$ ${controller.totalPrice}',
@@ -58,15 +59,11 @@ class ShoppingPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          label:GetX<CartController>(
-            builder: (controller) {
-              return Text("${controller.count}");
-            }
-          ),
-        onPressed: (){
-        },
+        label: GetX<CartController>(builder: (controller) {
+          return Text("${controller.count}");
+        }),
+        onPressed: () {},
         icon: Icon(Icons.shopping_cart),
-
       ),
     );
   }
